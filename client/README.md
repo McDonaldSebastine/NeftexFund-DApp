@@ -1,4 +1,4 @@
-##NeftexFund DApp
+## NeftexFund DApp
 NeftexFund is a decentralize funding web application.
 
 Follow the steps below to download, install, and run this project.
