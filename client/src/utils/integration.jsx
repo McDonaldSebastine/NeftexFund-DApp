@@ -1,12 +1,12 @@
-import abi from "../contexts/NeftexFund.json"
-import address from "../contexts/contractAddress.json"
-import { getGlobalState, setGlobalState} from "../constant"
-import { ethers } from "ethers"
+import abi from "../contexts/NeftexFund.json";
+import address from "../contexts/ContractAddress";
+import { getGlobalState, setGlobalState} from "../constant";
+import { ethers } from "ethers";
 
-const { ethereum } = window
-const contractAddress = address.address
-const contractAbi = abi.abi
-let tx
+const { ethereum } = window;
+const contractAddress = address.address;
+const contractAbi = abi.abi;
+let tx;
 
 const connectWallet = async () => {
   try {
@@ -47,7 +47,7 @@ const checkWalletConnection = async () => {
 const getNeftexfundContract = async () => {
     const accountConnected = getGlobalState('accountConnected')
   
-    if (accountConnected) {
+    if (accountConnected != null) { // check if truthy not just if it exists
       const provider = new ethers.providers.Web3Provider(ethereum)
       const signer = provider.getSigner()
       const contract = new ethers.Contract(contractAddress, contractAbi, signer)
@@ -106,6 +106,7 @@ const getNeftexfundContract = async () => {
       reportError(error)
     }
   }
+
   
   const loadcampaigns = async () => {
     try {
@@ -121,13 +122,15 @@ const getNeftexfundContract = async () => {
       reportError(error)
     }
   }
-  
+
   const loadcampaign = async (id) => {
     try {
       if (!ethereum) return alert('You do not have Metamask on your browser, Kindly install Metamask')
+      console.log("This is the id ", id)
       const contract = await getNeftexfundContract()
       const campaign = await contract.getcampaign(id)
-  
+     
+
       setGlobalState('campaign', layeredCampaigns([campaign])[0])
     } catch (error) {
       alert(JSON.stringify(error.message))
@@ -148,17 +151,17 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getSupporters(id)
+      await getsupporters(id)
     } catch (error) {
       reportError(error)
     }
   }
   
-  const getSupporters = async (id) => {
+  const getsupporters = async (id) => {
     try {
       if (!ethereum) return alert('You do not have Metamask on your browser, Kindly install Metamask')
       const contract = await getNeftexfundContract()
-      let supporters = await contract.getSupporters(id)
+      let supporters = await contract.getsupporters(id)
   
       setGlobalState('supporters', layeredSupporters(supporters))
     } catch (error) {
@@ -177,7 +180,7 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getSupporters(id)
+      await getsupporters(id)
     } catch (error) {
       reportError(error)
     }
@@ -195,20 +198,24 @@ const getNeftexfundContract = async () => {
   
   const layeredCampaigns= (campaigns) =>
     campaigns
-      .map((campaign) => ({
-        id: campaign.id.toNumber(),
-        owner: campaign.owner.toLowerCase(),
-        title: campaign.title,
-        description: campaign.description,
-        timestamp: new Date(campaign.timestamp.toNumber()).getTime(),
-        deadline: new Date(campaign.deadline.toNumber()).getTime(),
-        date: toDate(campaign.deadline.toNumber() * 1000),
-        imageURL: campaign.imageURL,
-        amountAccrued: parseInt(campaign.amountAccrued._hex) / 10 ** 18,
-        amount: parseInt(campaign.amount._hex) / 10 ** 18,
-        supporters: campaign.supporters.toNumber(),
-        check: campaign.check,
-      }))
+      .map((campaign) => {
+        console.log("This is the campaign", campaign)
+        return {
+          id: campaign.id.toNumber(),
+          owner: campaign.owner.toLowerCase(),
+          title: campaign.title,
+          description: campaign.description,
+          timestamp: new Date(campaign.timestamp?.toNumber()).getTime(),
+          deadline: new Date(campaign.deadline?.toNumber()).getTime(),
+          date: toDate(campaign.deadline?.toNumber() * 1000),
+          imageURL: campaign.imageURL,
+          amountAccrued: parseInt(campaign.amountAccrued._hex) / 10 ** 18,
+          amount: parseInt(campaign.amount._hex) / 10 ** 18,
+          supporters: campaign.supporters?.toNumber(),
+          check: campaign.check,
+        }
+
+      })
       .reverse()
   
   const toDate = (timestamp) => {
@@ -219,12 +226,12 @@ const getNeftexfundContract = async () => {
     return `${yyyy}-${mm}-${dd}`
   }
   
-  const layeredCounts = (counts) => ({
-    totalNumOfCampaigns: counts.totalNumOfCampaigns.toNumber(),
-    totalNumOfSupports: counts.totalNumOfSupports.toNumber(),
+  const layeredCounts = (counts) => {
+     return{ 
+    totalNumOfCampaigns: counts.totalNumOfCampaigns?.toNumber(),
+    totalNumOfSupports: counts.totalNumOfSupports?.toNumber(),
     totalNumOfFundings: parseInt(counts.totalNumOfFundings._hex) / 10 ** 18,
-  })
-  
+   }}  
   const reportError = (error) => {
     console.log(error.message)
     throw new Error("Sorry!, but no ethereum object was found.")
@@ -239,7 +246,7 @@ const getNeftexfundContract = async () => {
     loadcampaigns,
     loadcampaign,
     supportcampaign,
-    getSupporters,
+    getsupporters,
     withdrawcampaign,
   }
   
