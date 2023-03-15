@@ -93,7 +93,7 @@ const CampaignForm = ({ campaign }) => {
                         ) : campaign?.check == 3 ? (
                             <small className="text-red-700">Terminated</small>
                         ) : (  
-                            <small className="text-teal-700">Withdrawn</small>
+                            <small className="text-teal-400">Withdrawn</small>
                         )} 
                        
                     </div>
