@@ -1,5 +1,5 @@
 import abi from "../contexts/NeftexFund.json";
-import address from "../contexts/ContractAddress";
+import address from "../contexts/contractAddress";
 import { getGlobalState, setGlobalState} from "../constant";
 import { ethers } from "ethers";
 
