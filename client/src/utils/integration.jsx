@@ -1,5 +1,5 @@
 import abi from "../contexts/NeftexFund.json";
-import address from "../contexts/contractAddress";
+import address from "../contexts/contractAddress.json";
 import { getGlobalState, setGlobalState} from "../constant";
 import { ethers } from "ethers";
 
@@ -7,7 +7,7 @@ const { ethereum } = window;
 const contractAddress = address.address;
 const contractAbi = abi.abi;
 let tx;
-
+ 
 const connectWallet = async () => {
   try {
     if (!ethereum) return alert('You do not have Metamask on your browser, Kindly install Metamask')
@@ -151,17 +151,17 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getsupporters(id)
+      await getSupporters(id)
     } catch (error) {
       reportError(error)
     }
   }
   
-  const getsupporters = async (id) => {
+  const getSupporters = async (id) => {
     try {
       if (!ethereum) return alert('You do not have Metamask on your browser, Kindly install Metamask')
       const contract = await getNeftexfundContract()
-      let supporters = await contract.getsupporters(id)
+      let supporters = await contract.getSupporters(id)
   
       setGlobalState('supporters', layeredSupporters(supporters))
     } catch (error) {
@@ -180,7 +180,7 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getsupporters(id)
+      await getSupporters(id)
     } catch (error) {
       reportError(error)
     }
@@ -246,7 +246,7 @@ const getNeftexfundContract = async () => {
     loadcampaigns,
     loadcampaign,
     supportcampaign,
-    getsupporters,
+    getSupporters,
     withdrawcampaign,
   }
   
