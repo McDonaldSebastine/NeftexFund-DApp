@@ -151,17 +151,17 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getSupporters(id)
+      await getsupporters(id)
     } catch (error) {
       reportError(error)
     }
   }
   
-  const getSupporters = async (id) => {
+  const getsupporters = async (id) => {
     try {
       if (!ethereum) return alert('You do not have Metamask on your browser, Kindly install Metamask')
       const contract = await getNeftexfundContract()
-      let supporters = await contract.getSupporters(id)
+      let supporters = await contract.getsupporters(id)
   
       setGlobalState('supporters', layeredSupporters(supporters))
     } catch (error) {
@@ -180,7 +180,7 @@ const getNeftexfundContract = async () => {
       })
   
       await tx.wait()
-      await getSupporters(id)
+      await getsupporters(id)
     } catch (error) {
       reportError(error)
     }
@@ -246,7 +246,7 @@ const getNeftexfundContract = async () => {
     loadcampaigns,
     loadcampaign,
     supportcampaign,
-    getSupporters,
+    getsupporters,
     withdrawcampaign,
   }
   
