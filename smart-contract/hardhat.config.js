@@ -1,15 +1,24 @@
+require('@nomicfoundation/hardhat-toolbox')
+require('dotenv').config({ path: '.env' })
+require('@nomiclabs/hardhat-etherscan')
 
-require("@nomiclabs/hardhat-waffle");
-require('dotenv').config()
 
-//** @type import('hardhat/config').HardhatUserConfig */
+
+const { POLYGONSCAN_KEY, PRIVATE_KEY} = process.env
+
 module.exports = {
-  solidity: "0.8.7",
-  networks:{
-    goerli:{
-      url:'NETWORK_API', //input your Goerli API
-      accounts: ["PRIVATE_KEY"] //input your wallet private key ex. metamask wallet private key
-    }
+  solidity: '0.8.7',
+  // networks for deploying the smart contract
+  networks: {
+    // polygon testnet
+    mumbai: {
+      url: "https://rpc.ankr.com/polygon_mumbai",
+      accounts: [PRIVATE_KEY],
+    },
   },
-
-};
+  etherscan: {
+    apiKey: {
+      polygonMumbai: POLYGONSCAN_KEY,
+    },
+  },
+}
