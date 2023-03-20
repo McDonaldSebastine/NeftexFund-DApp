@@ -8,7 +8,16 @@ These smart contract is self-executing and self-enforcing, meaning that it autom
 NeftexFund can be used for various purposes, including crowdfunding for startups, charity fundraising, and even political campaigns. They can be accessed from anywhere in the world and offer a high degree of transparency and security, as all transactions are recorded on the blockchain and cannot be altered.
 
 
+## Deployed live link
+https://neftex-fund.vercel.app/
 
+## Note;
+Kindly note that when testing the NeftexFund DApp using the live URL above kindly use the Polygon Mumbai Matic Testnet, and locally, you should use thesame token 
+you used during the deployment stage of the smart-contract. Hence, if your primary token was matic you need to still use matic for the funding.
+
+## Smart Contract Verification link
+The smart contract was verified on the Polygon Mumbai Testnet, below is the link of the verified smart contract
+https://mumbai.polygonscan.com/address/0xf649ca0195CF967A4eDCd2B7B58C7F6FA4601830#code
 
 
 Regenerate response
