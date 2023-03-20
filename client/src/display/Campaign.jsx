@@ -5,7 +5,7 @@ import CampaignSupporters from "../components/CampaignSupporters"
 import ReviewCampaign from "../components/ReviewCampaign"
 import SupportCampaign from "../components/SupportCampaign"
 import TerminateCampaign from "../components/TerminateCampaign"
-import { loadcampaign, getSupporters } from "../utils/integration"
+import { loadcampaign, getsupporters } from "../utils/integration"
 import { useGlobalState } from "../constant"
 
 
@@ -17,7 +17,7 @@ const Campaign = () => {
   const [supporters] = useGlobalState("supporters")
   useEffect(async () => {
     await loadcampaign(id)
-    await getSupporters(id)
+    await getsupporters(id)
     setLoaded(true)
   }, [])
   return loaded ? (
