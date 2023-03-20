@@ -8,7 +8,7 @@ These smart contract is self-executing and self-enforcing, meaning that it autom
 NeftexFund can be used for various purposes, including crowdfunding for startups, charity fundraising, and even political campaigns. They can be accessed from anywhere in the world and offer a high degree of transparency and security, as all transactions are recorded on the blockchain and cannot be altered.
 
 
-## Deployed live link
+## Deployed live App
 https://neftex-fund.vercel.app/
 
 ## Note;
