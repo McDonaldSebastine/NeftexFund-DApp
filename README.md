@@ -22,7 +22,7 @@ https://mumbai.polygonscan.com/address/0xf649ca0195CF967A4eDCd2B7B58C7F6FA460183
 ## How to Create a Campaign
 - Click the create campaign button
 - Fill in the details of your campaign in the form that appea.
-## Note: The date option of the form requires you to fill the elapsing (expiring) date of the campaign, depending on how long you want the campaign to last.
+## Note: The date option in the form requires you to fill in the elapsing (expiring) date of the campaign, depending on how long you want the campaign to last.
 
 Regenerate response
 .
