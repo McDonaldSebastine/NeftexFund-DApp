@@ -20,9 +20,9 @@ The smart contract was verified on the Polygon Mumbai Testnet, below is the link
 https://mumbai.polygonscan.com/address/0xf649ca0195CF967A4eDCd2B7B58C7F6FA4601830#code
 
 ## How to Create a Campaign
-. Click the create campaign button
-. fill in the details of your campaign in the form that appear
-Note: The date option of the form requires you to fill the elapsing (expiring) date of the campaign, depending on how long you want the campaign to last.
+- Click the create campaign button
+- Fill in the details of your campaign in the form that appea.
+## Note: The date option of the form requires you to fill the elapsing (expiring) date of the campaign, depending on how long you want the campaign to last.
 
 Regenerate response
 .
