@@ -1,4 +1,4 @@
-## NeftexFund DApp
+## McDonald
 NeftexFund is a decentralized funding web application built on a blockchain network that allows users to raise funds for a project or venture in a decentralized and transparent manner.
 
 Unlike traditional fundraising methods, such as crowdfunding platforms, where intermediaries like banks or payment processors handle transactions and oversee the distribution of funds, NeftexFund uses smart contracts to execute the rules and logic of the fundraising process.
